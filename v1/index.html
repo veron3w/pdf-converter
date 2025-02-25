@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Empresarial</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        #relatorio { width: 100%; max-width: 800px; margin: auto; padding: 20px; border: 1px solid #ddd; }
+        h1, h2 { text-align: center; }
+        .page-break { page-break-before: always; height: 20px; }
+        button { display: block; margin: 20px auto; padding: 10px 20px; font-size: 16px; cursor: pointer; }
+    </style>
+</head>
+<body>
+
+    <div id="relatorio">
+        <h1>Relatório Empresarial</h1>
+        <h2>Empresa XYZ Ltda.</h2>
+        <p><strong>Data:</strong> <span id="data"></span></p>
+
+        <h2>Resumo Executivo</h2>
+        <p>O presente relatório apresenta um panorama da performance financeira e operacional da Empresa XYZ Ltda. no último trimestre.</p>
+
+        <h2>Dados Financeiros</h2>
+        <ul>
+            <li><strong>Faturamento bruto:</strong> R$ 1.250.000,00</li>
+            <li><strong>Lucro líquido:</strong> R$ 320.000,00</li>
+            <li><strong>Despesas operacionais:</strong> R$ 430.000,00</li>
+            <li><strong>Investimentos em expansão:</strong> R$ 150.000,00</li>
+        </ul>
+
+        <div class="page-break"></div>
+
+        <h2>Indicadores de Desempenho</h2>
+        <ul>
+            <li><strong>Crescimento trimestral:</strong> 8,5%</li>
+            <li><strong>Número de clientes ativos:</strong> 4.500</li>
+            <li><strong>Taxa de retenção de clientes:</strong> 92%</li>
+            <li><strong>Satisfação dos clientes:</strong> 4,7/5,0</li>
+        </ul>
+
+        <h2>Conclusão</h2>
+        <p>A Empresa XYZ Ltda. manteve um crescimento sólido neste trimestre. O foco nos próximos meses será a melhoria contínua e a inovação em serviços.</p>
+    </div>
+
+    <button onclick="gerarPDF()">Baixar Relatório</button>
+
+    <script>
+        document.getElementById("data").innerText = new Date().toLocaleDateString("pt-BR");
+
+        function gerarPDF() {
+            const elemento = document.getElementById("relatorio");
+
+            // Configuração do PDF
+            const options = {
+                margin: 10,
+                filename: "Relatorio_Empresarial.pdf",
+                image: { type: "jpeg", quality: 0.98 },
+                html2canvas: { scale: 2 },
+                jsPDF: { unit: "mm", format: "a4", orientation: "portrait" }
+            };
+
+            // Gera o PDF e baixa automaticamente
+            html2pdf().set(options).from(elemento).save();
+        }
+    </script>
+
+</body>
+</html>
