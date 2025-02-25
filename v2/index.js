@@ -18,21 +18,21 @@ const convertHTML = async () => {
 
 	const page = await browser.newPage();
 
-  const html = await fs.promises.readFile('index.js', 'utf8')
+  const html = await fs.promises.readFile('clone-blogvlr/blog-vlr/index.html', 'utf8')
   
 
   // setar conteudo ↓
-	await page.setContent("<p>Bem vindo - VERONE TECH</p>");
+	await page.setContent(html);
 
-	// testando
-  const nome = "Nome"
+
   // conversão do conteúdo para PDF ↓
 	await page.pdf({
 		format: "A4",
 		landscape: false,
 		width: 1920,
 		height: 1080,
-		path: "veronetech.pdf",
+		path: "blog.pdf",
+		printBackground: true
 	});
 
 
